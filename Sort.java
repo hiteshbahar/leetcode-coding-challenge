@@ -67,12 +67,36 @@ public class Sort {
         arr[i] = arr[j];
         arr[j] = temp;
     }
+    /*
+     * Bubble Sort
+     * swap between two elements.
+     * shift the maximum element to the end of the array.
+     */ 
     public void bubbleSort(int[] arr) {
         for (int i = arr.length - 1; i >= 0; i--) {
             for (int j = 1; j < i; j++) {
                 if (arr[j] < arr[j - 1]) {
                     swap(arr, j, j - 1);
                 }
+            }
+        }
+    }
+    /*
+     * Selection Sort
+     * go through the array n times and choose the minimum value of the remaining array.
+     */
+    public void selectionSort(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            boolean toSwap = false;
+            int min = i;
+            for (int j = i; j < arr.length; j++) {
+                if (arr[min] > arr[j]) {
+                    toSwap = true;
+                    min = j;
+                }
+            }
+            if (toSwap) {
+                swap(arr, min, i);
             }
         }
     }
