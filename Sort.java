@@ -1,5 +1,6 @@
 
 public class Sort {
+    /*merge sort is not an in place sorting algorithm for array*/
     public int[] mergeSort(int[] unsorted) {
         if (unsorted.length <= 1) {
             return unsorted;
@@ -36,6 +37,8 @@ public class Sort {
         }
         return merged;
     }
+    
+    /*quick sort is an in place algorithm for array*/
     public void quickSort(int[] arr, int low, int high) {
         if (low < high) {
             int pivotIndex = partition(arr, low, high);
