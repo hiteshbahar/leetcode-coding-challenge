@@ -67,12 +67,22 @@ public class Sort {
         arr[i] = arr[j];
         arr[j] = temp;
     }
+    public void bubbleSort(int[] arr) {
+        for (int i = arr.length - 1; i >= 0; i--) {
+            for (int j = 1; j < i; j++) {
+                if (arr[j] < arr[j - 1]) {
+                    swap(arr, j, j - 1);
+                }
+            }
+        }
+    }
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         Sort s = new Sort();
         int[] arr = new int[]{4, 9, 6, 8, 10};
         //s.quickSort(arr, 0, arr.length - 1);
-        arr = s.mergeSort(arr);
+        // arr = s.mergeSort(arr);
+        s.bubbleSort(arr);
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }
