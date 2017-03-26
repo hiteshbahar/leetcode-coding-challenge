@@ -100,13 +100,26 @@ public class Sort {
             }
         }
     }
+    public void insertionSort(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int j = i - 1;
+            int key = arr[i];
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            if (j != i) {
+                arr[j + 1] = key;
+            }
+        }
+    }
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         Sort s = new Sort();
         int[] arr = new int[]{4, 9, 6, 8, 10};
         //s.quickSort(arr, 0, arr.length - 1);
         // arr = s.mergeSort(arr);
-        s.bubbleSort(arr);
+        s.insertionSort(arr);
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }
