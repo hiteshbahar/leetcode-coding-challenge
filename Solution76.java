@@ -2,6 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Solution76 {
+    /*Version 1: O(N^2) TLE too slow*/
     public String minWindow(String s, String t) {
         if (s.length() < t.length()) {
             return "";
