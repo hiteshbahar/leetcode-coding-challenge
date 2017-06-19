@@ -75,7 +75,7 @@ public class Solution76 {
     
     public static void main(String[] args) {
         Solution76 slu = new Solution76();
-        String s = "ADOBECODEBANC";
+        String s = "ADOBECODEAABC";
         String t = "ABC";
         System.out.print(slu.minWindow(s, t));
         System.out.println();
