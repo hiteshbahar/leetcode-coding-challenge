@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
@@ -113,8 +111,6 @@ public class PocketGems {
         System.out.println("the maximum is " + p.findMax(root));
     }
 }
-||||||| merged common ancestors
-=======
 /**
  * Created by xwang on 6/18/17.
  */
@@ -157,9 +153,6 @@ public class PocketGems {
         System.out.println("the maximum is " + p.findMax(root));
     }
 }
->>>>>>> add pocketgems
-||||||| merged common ancestors
-=======
 /**
  * Created by xwang on 6/18/17.
  */
@@ -202,4 +195,3 @@ public class PocketGems {
         System.out.println("the maximum is " + p.findMax(root));
     }
 }
->>>>>>> add pocketgems
