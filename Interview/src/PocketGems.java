@@ -62,14 +62,7 @@ public class PocketGems {
             valPerSlot = val;
         }
     }
-    class ValMaxSize {
-        int val;
-        int maxSize;
-        ValMaxSize(int v, int size) {
-            val = v;
-            maxSize = size;
-        }
-    }
+
     /**
      *  RPG game
      * @param n: The number of inventory slots
@@ -78,28 +71,29 @@ public class PocketGems {
      * @return The maximum total value
      */
     public int PRG(int n, String[] items, ItemInfo[] itemInfos) {
-        // put given items and their count into a map.
+        // 1. first get the counts of every role
         Map<String, Integer> countMap = new HashMap<String, Integer>();
         for (String item : items) {
             countMap.put(item, countMap.getOrDefault(item, 0) + 1);
         }
-        // put itemInfos in a map for searching
-        Map<String, ValMaxSize> valSizeMap = new HashMap<String, ValMaxSize>();
+        // 2. put itemInfos in a map for searching
+        Map<String, ItemInfo> itemInfoMap = new HashMap<String, ItemInfo>();
         for (ItemInfo itemInfo : itemInfos) {
-            valSizeMap.put(itemInfo.name, new ValMaxSize(itemInfo.value, itemInfo.maxStackSize));
+            itemInfoMap.put(itemInfo.name, itemInfo);
         }
-
+        // 3. create a PriorityQueue, define its comparator according to the value per slot
         Queue<SlotVal> queue = new PriorityQueue<SlotVal>(new Comparator<SlotVal>() {
             @Override
             public int compare(SlotVal o1, SlotVal o2) {
                 return o2.valPerSlot - o1.valPerSlot;
             }
         });
+        // 4. get the slot num needed for each role and put them into queue
         for (Map.Entry<String, Integer> entry : countMap.entrySet()) {
             String name = entry.getKey();
             int count = entry.getValue();
-            int itemVal = valSizeMap.get(name).val;
-            int maxStackSize = valSizeMap.get(name).maxSize;
+            int itemVal = itemInfoMap.get(name).value;
+            int maxStackSize = itemInfoMap.get(name).maxStackSize;
             int completeStacks = count / maxStackSize;
             int remainder = count % maxStackSize;
 
@@ -116,6 +110,7 @@ public class PocketGems {
                 queue.offer(new SlotVal(name, valPerSlot));
             }
         }
+        // 5. poll n element from the queue and calculate its total size
         int totalVal = 0;
         int count = n > queue.size() ? queue.size() : n;
         while (count > 0) {
@@ -125,6 +120,9 @@ public class PocketGems {
         return totalVal;
     }
 
+    /**
+     * inner class for binary trees questions
+     */
     class BSTNodeWithParentPointer {
         BSTNodeWithParentPointer left, right, parent;
         BSTNodeWithParentPointer() {
