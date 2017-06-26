@@ -32,6 +32,20 @@ public class FindMaxPathSumRootToLeaf {
         findMaxRootToLeaf(root.left, res, currSum);
         findMaxRootToLeaf(root.right, res, currSum);
     }
+    public boolean printPath(Node root, int sum) {
+        if (sum == 0) {
+            return true;
+        }
+        if (root == null) {
+            return false;
+        }
+        boolean left = printPath(root.left, sum - root.val);
+        boolean right = printPath(root.right, sum - root.val);
+        if (left || right) {
+            System.out.print(root.val + " ");
+        }
+        return left || right;
+    }
     public static void main (String[] args) {
         FindMaxPathSumRootToLeaf p = new FindMaxPathSumRootToLeaf();
         Node root = p.new Node(10);
@@ -39,6 +53,8 @@ public class FindMaxPathSumRootToLeaf {
         root.right = p.new Node(7);
         root.left.left = p.new Node(8);
         root.left.right = p.new Node(-4);
-        System.out.println("the maximum is " + p.findMax(root));
+        int maxSum = p.findMax(root);
+        System.out.println("the maximum is " + maxSum);
+        p.printPath(root, maxSum);
     }
 }
