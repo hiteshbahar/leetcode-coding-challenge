@@ -1,6 +1,7 @@
 package pocketgems;
 
 /**
+ * Generic Binary Tree class print tree path
  * Created by xwang on 6/25/17.
  */
 public class BinaryTree<T extends Comparable<T>> {
@@ -21,15 +22,6 @@ public class BinaryTree<T extends Comparable<T>> {
     }
 
     private Node<T> root;
-
-//    public void insert(T v) {
-//        root = insert(root, v);
-//    }
-//    private Node<T> insert(Node<T> root, T v) {
-//        if (root == null) {
-//            return new Node<T>(v);
-//        }
-//    }
 
     private void preorder(Node<T> root) {
         if (root == null) {
