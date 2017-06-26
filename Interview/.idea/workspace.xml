@@ -16,10 +16,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PocketGems.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PocketGems.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pocketgems/PocketGems.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2225">
+            <state relative-caret-position="3719">
               <caret line="287" column="21" lean-forward="false" selection-start-line="287" selection-start-column="21" selection-end-line="287" selection-end-column="21" />
               <folding>
                 <element signature="e#2116#2134#0" expanded="true" />
@@ -43,13 +43,31 @@
       <file leaf-file-name="SortPixels.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pocketgems/SortPixels.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="912">
-              <caret line="57" column="25" lean-forward="true" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
+            <state relative-caret-position="481">
+              <caret line="101" column="34" lean-forward="false" selection-start-line="101" selection-start-column="34" selection-end-line="101" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#496#503#0" expanded="true" />
                 <element signature="e#581#582#0" expanded="true" />
                 <element signature="e#635#636#0" expanded="true" />
+                <element signature="e#1700#1701#0" expanded="true" />
+                <element signature="e#1733#1734#0" expanded="true" />
+                <element signature="e#1810#1811#0" expanded="true" />
+                <element signature="e#1845#1846#0" expanded="true" />
+                <element signature="e#1879#1880#0" expanded="true" />
+                <element signature="e#1915#1916#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BinaryTree.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pocketgems/BinaryTree.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="519">
+              <caret line="48" column="5" lean-forward="false" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+              <folding>
+                <element signature="e#1073#1081#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -70,8 +88,10 @@
         <option value="$APPLICATION_CONFIG_DIR$/idea.properties" />
         <option value="$PROJECT_DIR$/src/PocketGems.java" />
         <option value="$PROJECT_DIR$/src/pocketgems/PocketGems.java" />
-        <option value="$PROJECT_DIR$/src/pocketgems/SortPixels.java" />
         <option value="$PROJECT_DIR$/src/pocketgems/FindMaxPathSumRootToLeaf.java" />
+        <option value="$PROJECT_DIR$/src/pocketgems/SortPixels.java" />
+        <option value="$PROJECT_DIR$/src/pocketgems/BuildBinaryTree.java" />
+        <option value="$PROJECT_DIR$/src/pocketgems/BinaryTree.java" />
       </list>
     </option>
   </component>
@@ -150,7 +170,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.FindMaxPathSumRootToLeaf">
+  <component name="RunManager" selected="Application.BinaryTree">
     <configuration default="false" name="PocketGems" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="pocketgems.PocketGems" />
       <option name="VM_PARAMETERS" />
@@ -181,6 +201,20 @@
     </configuration>
     <configuration default="false" name="FindMaxPathSumRootToLeaf" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="pocketgems.FindMaxPathSumRootToLeaf" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Interview" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="BinaryTree" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="pocketgems.BinaryTree" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -285,16 +319,18 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Application.PocketGems" />
       <item index="1" class="java.lang.String" itemvalue="Application.SortPixels" />
       <item index="2" class="java.lang.String" itemvalue="Application.FindMaxPathSumRootToLeaf" />
+      <item index="3" class="java.lang.String" itemvalue="Application.BinaryTree" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Application.FindMaxPathSumRootToLeaf" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Application.BinaryTree" />
         <item index="1" class="java.lang.String" itemvalue="Application.SortPixels" />
-        <item index="2" class="java.lang.String" itemvalue="Application.PocketGems" />
+        <item index="2" class="java.lang.String" itemvalue="Application.FindMaxPathSumRootToLeaf" />
+        <item index="3" class="java.lang.String" itemvalue="Application.PocketGems" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
@@ -409,27 +445,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pocketgems/SortPixels.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="912">
-          <caret line="57" column="25" lean-forward="true" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#496#503#0" expanded="true" />
-            <element signature="e#581#582#0" expanded="true" />
-            <element signature="e#635#636#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pocketgems/PocketGems.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2225">
+        <state relative-caret-position="3719">
           <caret line="287" column="21" lean-forward="false" selection-start-line="287" selection-start-column="21" selection-end-line="287" selection-end-column="21" />
           <folding>
             <element signature="e#2116#2134#0" expanded="true" />
             <element signature="e#2503#2504#0" expanded="true" />
             <element signature="e#2571#2572#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pocketgems/SortPixels.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="101" column="34" lean-forward="false" selection-start-line="101" selection-start-column="34" selection-end-line="101" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#496#503#0" expanded="true" />
+            <element signature="e#581#582#0" expanded="true" />
+            <element signature="e#635#636#0" expanded="true" />
+            <element signature="e#1700#1701#0" expanded="true" />
+            <element signature="e#1733#1734#0" expanded="true" />
+            <element signature="e#1810#1811#0" expanded="true" />
+            <element signature="e#1845#1846#0" expanded="true" />
+            <element signature="e#1879#1880#0" expanded="true" />
+            <element signature="e#1915#1916#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pocketgems/BinaryTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="519">
+          <caret line="48" column="5" lean-forward="false" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+          <folding>
+            <element signature="e#1073#1081#0" expanded="true" />
           </folding>
         </state>
       </provider>

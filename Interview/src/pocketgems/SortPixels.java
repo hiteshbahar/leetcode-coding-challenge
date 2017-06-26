@@ -54,23 +54,51 @@ public class SortPixels {
             }
         }
     }
+    public enum Color {
+        R(0),
+        G(0),
+        B(0);
+        private final int value;
+        Color(int v) {
+            value = v;
+        }
+    }
+    public class Node {
+        Color color;
+        Node(Color col) {
+            color = col;
+        }
+        public Color getColor() {
+            return color;
+        }
+    }
 
     public static void main(String[] args) {
-        long start = System.currentTimeMillis();
         SortPixels p = new SortPixels();
-        Pixel[] pixels = new Pixel[5];
-        pixels[0] = p.new Pixel(1, 0, 3);
-        pixels[1] = p.new Pixel(1, 1, 2);
-        pixels[2] = p.new Pixel(3, 2, 3);
-        pixels[3] = p.new Pixel(4, 0, 1);
-        pixels[4] = p.new Pixel(2, 0, 5);
+        /**
+         * test sort color pixels
+         */
+//        long start = System.currentTimeMillis();
+//        Pixel[] pixels = new Pixel[5];
+//        pixels[0] = p.new Pixel(1, 0, 3);
+//        pixels[1] = p.new Pixel(1, 1, 2);
+//        pixels[2] = p.new Pixel(3, 2, 3);
+//        pixels[3] = p.new Pixel(4, 0, 1);
+//        pixels[4] = p.new Pixel(2, 0, 5);
+//
+//        //p.sortPixels(pixels);
+//        p.bucketSortPixels(pixels);
+//        for (int i = 0; i < pixels.length; i++) {
+//            System.out.println(pixels[i].red + " " + pixels[i].green + " " + pixels[i].blue);
+//        }
+//        long end = System.currentTimeMillis();
+//        System.out.println(end - start);
 
-        //p.sortPixels(pixels);
-        p.bucketSortPixels(pixels);
-        for (int i = 0; i < pixels.length; i++) {
-            System.out.println(pixels[i].red + " " + pixels[i].green + " " + pixels[i].blue);
-        }
-        long end = System.currentTimeMillis();
-        System.out.println(end - start);
+        /**
+         * test enum colors
+         */
+        Node node = p.new Node(Color.R);
+        Color R = node.getColor();
+        System.out.println(R.value);
     }
 }
