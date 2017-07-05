@@ -54,5 +54,6 @@ public class Solution501 {
         for (int i = 0; i < mode.length; i++) {
             System.out.println(mode[i]);
         }
+        System.out.print(Character.getNumericValue('6') == 1);
     }
 }
