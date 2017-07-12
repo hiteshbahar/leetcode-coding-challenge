@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
 public class Solution119 {
     public List<Integer> getRow(int rowIndex) {
         Integer[] result =  new Integer[rowIndex + 1];
