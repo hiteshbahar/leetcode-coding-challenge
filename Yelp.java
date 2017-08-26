@@ -38,12 +38,11 @@ public class Yelp {
         }
 
         List<String> resultList = new ArrayList<String>();
+        // remember to poll elements from priority queue rather than
+        // using a for loop
         while (!resultQueue.isEmpty()) {
             resultList.add(resultQueue.poll());
         }
-//        for (String word : resultQueue) {
-//            resultList.add(word);
-//        }
         return resultList;
     }
     public static void main(String[] args) {
