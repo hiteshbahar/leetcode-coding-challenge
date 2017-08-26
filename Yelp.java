@@ -7,7 +7,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class Yelp {
-    /* V12: */
+    /* V12: find restaurant with smallest index sum */
     public String[] findRestaurant(String[] list1, String[] list2) {
         Map<String, Integer> map = new HashMap<String, Integer>();
         for (int i = 0; i < list1.length; i++) {
@@ -76,8 +76,53 @@ public class Yelp {
         }
         return resultList;
     }
+    /* V9: Business Info
+     * merge two lists as numReviews in descending order
+     */
+    class BusinessInfo {
+        int id;
+        int numReviews;
+        BusinessInfo(int i, int n) {
+            id = i;
+            numReviews = n;
+        }
+    }
+    /* Assume that the two input lists are ArrayLists*/
+    public List<BusinessInfo> mergeBusinessInfo(List<BusinessInfo> list1, List<BusinessInfo> list2) {
+        if (list1 == null || list1.size() == 0) {
+            return list2;
+        }
+        if (list2 == null || list2.size() == 0) {
+            return list1;
+        }
+        List<BusinessInfo> result = new ArrayList<BusinessInfo>();
+        int index1 = 0;
+        int index2 = 0;
+        while (index1 < list1.size() && index2 < list2.size()) {
+            BusinessInfo info1 = list1.get(index1);
+            BusinessInfo info2 = list2.get(index2);
+            if (info1.numReviews > info2.numReviews) {
+                result.add(info1);
+                index1++;
+            } else {
+                result.add(info2);
+                index2++;
+            }
+        }
+        while (index1 < list1.size()) {
+            result.add(list1.get(index1));
+            index1++;
+        }
+        while (index2 < list2.size()) {
+            result.add(list2.get(index2));
+            index2++;
+        }
+        return result;
+    }
     public static void main(String[] args) {
         Yelp y = new Yelp();
+        // test v11
+        /*
         List<List<String>> image = new ArrayList<List<String>>();
         for (int i = 0; i < 3; i++) {
             image.add(new ArrayList<String>());
@@ -97,6 +142,22 @@ public class Yelp {
         }
         System.out.println(result.get(1));
         System.out.println("red".compareTo("green"));
+        */
+        
+        // test V9
+        List<BusinessInfo> list1 = new ArrayList<BusinessInfo>();
+        List<BusinessInfo> list2 = new ArrayList<BusinessInfo>();
+        list1.add(y.new BusinessInfo(0, 800));
+        list1.add(y.new BusinessInfo(2, 700));
+        list1.add(y.new BusinessInfo(5, 600));
+        list2.add(y.new BusinessInfo(1, 900));
+        list2.add(y.new BusinessInfo(3, 750));
+        list2.add(y.new BusinessInfo(4, 740));
+        
+        List<BusinessInfo> result = y.mergeBusinessInfo(list1, list2);
+        for (int i = 0; i < result.size(); i++) {
+            System.out.println(result.get(i).id);
+        }
     }
 
 }
