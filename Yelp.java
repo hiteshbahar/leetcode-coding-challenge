@@ -119,6 +119,30 @@ public class Yelp {
         }
         return result;
     }
+    /* Compress String*/
+    public String compress(String str) {
+        StringBuilder sb = new StringBuilder();
+        int count = 1;
+        for (int i = 1; i < str.length(); i++) {
+            char curr = str.charAt(i);
+            char prev = str.charAt(i - 1);
+            if (curr == prev) {
+                count++;
+            } else {
+                sb.append(Integer.toString(count));
+                sb.append(prev);
+                count = 1;
+            }
+            if (i == str.length() - 1) {
+                sb.append(Integer.toString(count));
+                sb.append(curr);
+            }
+        }
+        if (sb.length() > str.length()) {
+            return str;
+        }
+        return sb.toString();
+    }
     public static void main(String[] args) {
         Yelp y = new Yelp();
         // test v11
@@ -145,6 +169,7 @@ public class Yelp {
         */
         
         // test V9
+        /*
         List<BusinessInfo> list1 = new ArrayList<BusinessInfo>();
         List<BusinessInfo> list2 = new ArrayList<BusinessInfo>();
         list1.add(y.new BusinessInfo(0, 800));
@@ -158,6 +183,10 @@ public class Yelp {
         for (int i = 0; i < result.size(); i++) {
             System.out.println(result.get(i).id);
         }
+        */
+        // test compress string
+        System.out.println(y.compress("aaaaaadddvv"));
+        
     }
 
 }
