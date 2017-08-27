@@ -143,6 +143,22 @@ public class Yelp {
         }
         return sb.toString();
     }
+    /* V8: Reduce String*/
+    public String reduceString(String str) {
+        if (str.length() <= 1) {
+            return str;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(str.charAt(0));
+        for (int i = 1; i < str.length(); i++) {
+            char curr = str.charAt(i);
+            char prev = str.charAt(i - 1);
+            if (curr != prev) {
+                sb.append(curr);
+            }
+        }
+        return sb.toString();
+    }
     public static void main(String[] args) {
         Yelp y = new Yelp();
         // test v11
@@ -185,7 +201,9 @@ public class Yelp {
         }
         */
         // test compress string
-        System.out.println(y.compress("aaaaaadddvv"));
+//        System.out.println(y.compress("aaaaaadddvv"));
+        //test v8
+        System.out.println(y.reduceString("aaaaaadddvv"));
         
     }
 
