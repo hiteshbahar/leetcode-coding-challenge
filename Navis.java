@@ -1,23 +1,22 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class Navis {
 
     public static void main(String[] args) {
-        try {
-            String s = null;
-            s.substring(10);
-        } catch (RuntimeException e) {
-            System.out.println("runtime");
-        } catch (Exception e) {
-            System.out.println("other");
-        }
+        Navis n = new Navis();
+        int[] nums = new int[]{2, 2, 1, 1, 3, 4};
+        
+        n.freqSort(nums);
     }
-    public void topKFrequent(int[] nums, int k) {
+    public void freqSort(int[] nums) {
 
-        List<Integer>[] bucket = new List[nums.length + 1];
+        Queue<Integer>[] bucket = new PriorityQueue[nums.length + 1];
         Map<Integer, Integer> frequencyMap = new HashMap<Integer, Integer>();
 
         for (int n : nums) {
@@ -27,18 +26,18 @@ public class Navis {
         for (int key : frequencyMap.keySet()) {
             int frequency = frequencyMap.get(key);
             if (bucket[frequency] == null) {
-                bucket[frequency] = new ArrayList<>();
+                bucket[frequency] = new PriorityQueue<>();
             }
-            bucket[frequency].add(key);
+            for (int i = 0; i < frequency; i++) {
+                bucket[frequency].offer(key);
+            }
         }
 
-        List<Integer> res = new ArrayList<>();
-
-        for (int pos = bucket.length - 1; pos >= 0 && res.size() < k; pos--) {
+        for (int pos = 0; pos < bucket.length; pos++) {
             if (bucket[pos] != null) {
-                List<Integer> list = bucket[pos];
-                for (int i = 0; i < list.size(); i++) {
-                    System.out.println(list.get(i));
+                Queue<Integer> queue = bucket[pos];
+                while (!queue.isEmpty()) {
+                    System.out.println(queue.poll());
                 }
             }
         }
