@@ -1,6 +1,10 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.Deque;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -101,19 +105,46 @@ public class Coursera {
         }
         return sum;
     }
+    public int segment(int x, int[] arr) {
+        if (arr == null || x <= 0) {
+            return 0;
+        }
+        int max = Integer.MIN_VALUE;
+        Deque<Integer> deque = new ArrayDeque<>();
+        for (int i = 0; i < arr.length; i++) {
+            
+            while(!deque.isEmpty() && deque.peek() < i - x + 1) deque.poll();
+            while(!deque.isEmpty() && arr[deque.peekLast()] > arr[i]) deque.pollLast();
+            deque.offer(i);  
+
+            if (i + 1 >= x) {
+                max = Math.max(max, arr[deque.peek()]);
+            }
+        }
+        return max;
+    }
     public static void main(String[] args) {
         Coursera c = new Coursera();
+        
         /*finalPrice*/
 //        int[] prices = new int[]{5,1,3,4,6,2};
 //        c.finalPrice(prices);
+        
         /* playList*/
 //        System.out.println(c.playList(20, 9, 3));
 //        System.out.println(Math.pow(116280,2) * 20 % (1e9 + 7));
+        
         /* royalNames */
-        String[] names = new String[]{"Albert II","Polo IV","Alw V","Elizabeth XXV", "Albert XL","Polo XLVI"};
-        names = c.royalGames(names);
-        for (int i = 0; i < names.length; i++) {
-            System.out.println(names[i]);
-        }
+//        String[] names = new String[]{"Albert II","Polo IV","Alw V","Elizabeth XXV", "Albert XL","Polo XLVI"};
+//        names = c.royalGames(names);
+//        for (int i = 0; i < names.length; i++) {
+//            System.out.println(names[i]);
+//        }
+        
+        
+        /* */
+        int x = 3;
+        int[] arr = new int[]{2,5,4,6,8};
+        System.out.println(c.segment(x, arr));
     }
 }
