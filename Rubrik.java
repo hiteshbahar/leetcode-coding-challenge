@@ -82,10 +82,10 @@ public class Rubrik {
      * 2) Expose function clickTile(row, col) which clicks the tile and returns information about
      *    the clicked tile (and surrounding tiles) that satisfies the following:
      *  
-     *    - If neighboring bombs, return the # surrounding bombs
+     *    - If has neighboring bombs, return the # surrounding bombs
      *    - If no neighboring bombs, return set of surrounding tiles with 
      *      neighboring bombs (and count of bombs)
-     *    - If bomb clicked, indicate to player they lose
+     *    - If bomb clicked, indicate to players they lose
      *    - Should keep track of which tiles have been clicked
      *
      *    Example Calls:
@@ -100,98 +100,98 @@ public class Rubrik {
      */
 
     class Point {
-      int x;
-      int y;
-      int count;
-      Point(int x, int y, int count) {
-        this.x = x;
-        this.y = y;
-        this.count = count;
-      }
-    } 
+        int x;
+        int y;
+        int count;
+        Point(int x, int y, int count) {
+            this.x = x;
+            this.y = y;
+            this.count = count;
+        }
+    }
     class ReturnType {
-      boolean isAlive;
-      List<Point> surroundings;
-      ReturnType(boolean isAlive) {
-        this.isAlive = isAlive;
-        this.surroundings = new ArrayList<>();
-      }
+        boolean isAlive;
+        List<Point> surroundings;
+        ReturnType(boolean isAlive) {
+            this.isAlive = isAlive;
+            this.surroundings = new ArrayList<>();
+        }
     }
 
     class Minesweeper {
-      private final int[][] dirs = {
-        { -1, -1 }, { -1, 0 }, { -1, 1 },
-        { 0, -1 }, { 0, 1 },
-        { 1, -1 }, { 1, 0 }, { 1, 1 }
-      };
+        private final int[][] dirs = {
+            {-1, -1}, {-1, 0}, {-1, 1},
+            {0, -1}, {0, 1},
+            {1, -1}, {1, 0}, {1, 1}
+        };
       
       private char[][] matrix;
       private int m;
       private int n;
       
       public Minesweeper(char[][] matrix) {
-        this.matrix = matrix;
-        this.m = matrix.length;
-        this.n = matrix[0].length;
+          this.matrix = matrix;
+          this.m = matrix.length;
+          this.n = matrix[0].length;
       }
       
       public ReturnType clickTile(int row, int col) {
-        if (matrix[row][col] == 'B') {
-          return new ReturnType(false);
-        }
+          if (matrix[row][col] == 'B') {
+              return new ReturnType(false);
+          }
         
-        int count = countNeighbors(row, col);
-        if (count > 0) {
-          Point here = new Point(row, col, count);
+          int count = countNeighbors(row, col);
+          // has neighboring bombs
+          if (count > 0) {
+              Point clickedPoint = new Point(row, col, count);
+              ReturnType res = new ReturnType(true);
+              res.surroundings.add(clickedPoint);
+              return res;
+          }
+        
+          boolean[][] visited = new boolean[m][n];
+          List<Point> surroundings = new ArrayList<>();
+          visited[row][col] = true;
+          dfs(row, col, visited, surroundings);
+        
           ReturnType res = new ReturnType(true);
-          res.surroundings.add(here);
+          res.surroundings = surroundings;
           return res;
-        }
-        
-        boolean[][] visited = new boolean[m][n];
-        List<Point> surroundings = new ArrayList<>();
-        visited[row][col] = true;
-        dfs(row, col, visited, surroundings);
-        
-        ReturnType res = new ReturnType(true);
-        res.surroundings = surroundings;
-        return res;
       }
       
+      // count neighboring bombs
       private int countNeighbors(int x, int y) {
-        int count = 0;
-        for (int[] dir : dirs) {
-          int xx = x + dir[0];
-          int yy = y + dir[1];
-          
-          if (xx < 0 || xx >= m || yy < 0 || yy >= n) {
-            continue;
+          int count = 0;
+          for (int[] dir : dirs) {
+              int xx = x + dir[0];
+              int yy = y + dir[1];
+              if (xx < 0 || xx >= m || yy < 0 || yy >= n) {
+                continue;
+              }
+              if (matrix[xx][yy] == 'B') {
+                count++;
+              }
           }
-          
-          if (matrix[xx][yy] == 'B') {
-            count++;
-          }
-        }
-        return count;
+          return count;
       }
       
       private void dfs(int x, int y, boolean[][] visited, List<Point> surroundings) {
-        int count = countNeighbors(x, y);
-        if (count > 0) {
-          Point point = new Point(x, y, count);
-          surroundings.add(point);
-        }
-        for (int[] dir : dirs) {
-          int xx = x + dir[0];
-          int yy = y + dir[1];
-          
-          if (xx < 0 || xx >= m || yy < 0 || yy >= n || visited[xx][yy] || matrix[xx][yy] == 'B') {
-            continue;
+
+          int count = countNeighbors(x, y);
+          if (count > 0) {
+              Point point = new Point(x, y, count);
+              surroundings.add(point);
           }
-          
-          visited[xx][yy] = true;
-          dfs(xx, yy, visited, surroundings);
-        }
+          for (int[] dir : dirs) {
+              int xx = x + dir[0];
+              int yy = y + dir[1];
+              if (xx < 0 || xx >= m || yy < 0 || yy >= n || visited[xx][yy] || matrix[xx][yy] == 'B') {
+                  continue;
+              }
+              visited[xx][yy] = true;
+
+              dfs(xx, yy, visited, surroundings);
+          }
       }
       
 //      public void markTileAsBomb(row, col);
@@ -203,34 +203,47 @@ public class Rubrik {
         /**
          * Find same contacts
          */
+////        String[][] contacts =  {{"John", "john@gmail.com", "john@fb.com"}, 
+////                                {"Dan", "dan@gmail.com", "+1234567"},
+////                                {"john123", "5412312", "john123@skype.com"}, 
+////                                {"john1985", "5412312", "john@fb.com"},
+////                                {"john19856", "john123@skype.com", "john@fb1.com"},
+////                                {"Dan2", "dan123@gmail.com", "+1234567"},
+////                                {"Dan3", "dan@gmail.com", "+123456712312"},
+////                                {"Sandy", "sandy@gmail.com", "+123456712"},
+////                                {"sandy4", "sandy@fb.com", "sandy@gmail.com"}};
+//        
 //        String[][] contacts =  {{"John", "john@gmail.com", "john@fb.com"}, 
-//                                {"Dan", "dan@gmail.com", "+1234567"},
-//                                {"john123", "5412312", "john123@skype.com"}, 
-//                                {"john1985", "5412312", "john@fb.com"},
-//                                {"john19856", "john123@skype.com", "john@fb1.com"},
-//                                {"Dan2", "dan123@gmail.com", "+1234567"},
-//                                {"Dan3", "dan@gmail.com", "+123456712312"},
-//                                {"Sandy", "sandy@gmail.com", "+123456712"},
-//                                {"sandy4", "sandy@fb.com", "sandy@gmail.com"}};
-        
-        String[][] contacts =  {{"John", "john@gmail.com", "john@fb.com"}, 
-                {"Dan", "dan@gmail.com", "+1234567"},
-                {"john123", "5412312", "john123@skype.com"}, 
-                {"john1985", "5412312", "john@fb.com"}};
-       
-        List<List<Contact>> resultList = r.findSameContacts(contacts);
-       
-        for(List<Contact> contactList : resultList) {
-            if(contactList.size() > 0) {
-                for(Contact contact : contactList) {
-                    System.out.print(contact.index + ", ");
-                }
-                System.out.println();
-            }
-        }
+//                {"Dan", "dan@gmail.com", "+1234567"},
+//                {"john123", "5412312", "john123@skype.com"}, 
+//                {"john1985", "5412312", "john@fb.com"}};
+//       
+//        List<List<Contact>> resultList = r.findSameContacts(contacts);
+//       
+//        for(List<Contact> contactList : resultList) {
+//            if(contactList.size() > 0) {
+//                for(Contact contact : contactList) {
+//                    System.out.print(contact.index + ", ");
+//                }
+//                System.out.println();
+//            }
+//        }
         
         /**
-         * 
+         * Minesweeper
          */
+        char[][] matrix = {
+                {'B', 'X', 'B', 'X'},
+                {'B', 'B', 'X', 'X'},
+                {'X', 'B', 'X', 'X'},
+                {'B', 'X', 'X', 'X'}};
+        Minesweeper m = r.new Minesweeper(matrix);
+        ReturnType res = m.clickTile(3, 3);
+        System.out.println(res.isAlive);
+        System.out.println(res.surroundings.size());
+
+        for (Point p : res.surroundings) {
+            System.out.println("(" + p.x + "," + (p.y) + ") has " + p.count + " surrounding bombs");
+        }
     }
 }
