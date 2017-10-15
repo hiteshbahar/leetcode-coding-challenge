@@ -151,7 +151,6 @@ public class Rubrik {
         
           boolean[][] visited = new boolean[m][n];
           List<Point> surroundings = new ArrayList<>();
-          visited[row][col] = true;
           dfs(row, col, visited, surroundings);
         
           ReturnType res = new ReturnType(true);
@@ -176,7 +175,10 @@ public class Rubrik {
       }
       
       private void dfs(int x, int y, boolean[][] visited, List<Point> surroundings) {
-
+          if (x < 0 || x >= m || y < 0 || y >= n || visited[x][y] || matrix[x][y] == 'B') {
+              return;
+          }
+          visited[x][y] = true;
           int count = countNeighbors(x, y);
           if (count > 0) {
               Point point = new Point(x, y, count);
@@ -185,10 +187,6 @@ public class Rubrik {
           for (int[] dir : dirs) {
               int xx = x + dir[0];
               int yy = y + dir[1];
-              if (xx < 0 || xx >= m || yy < 0 || yy >= n || visited[xx][yy] || matrix[xx][yy] == 'B') {
-                  continue;
-              }
-              visited[xx][yy] = true;
 
               dfs(xx, yy, visited, surroundings);
           }
