@@ -9,48 +9,47 @@ public class Rubrik {
     
     class Contact {
         List<String> fieldsList;
-        String name;
+        int index;
         boolean visited;
         
-        Contact(List<String> fieldsList, String name, boolean visited) {
+        Contact(List<String> fieldsList, int i, boolean visited) {
             this.fieldsList = fieldsList;
-            this.name = name;
+            this.index = i;
             this.visited = visited;
         }
     }
     
     // DFS find union
-    Set<Contact> findUnion(Map<String, List<Contact>> map, Contact contact, Set<Contact> resultSet) {
-        if(!contact.visited){
+    List<Contact> findUnion(Map<String, List<Contact>> map, Contact contact, List<Contact> subList) {
+        if(!contact.visited) {
              contact.visited = true;
-             resultSet.add(contact);
+             subList.add(contact);
              for(String field : contact.fieldsList) {
                  for(Contact c : map.get(field)) {
                      if(!c.visited) {
-                         resultSet.add(c);
-                         findUnion(map, c, resultSet);
+                         findUnion(map, c, subList);
                      }
                  }
              }
         } 
-        return resultSet;  
+        return subList;  
     }
     public static void main(String[] args) {
         Rubrik r = new Rubrik();
-//        String[][] contacts =  {{"John", "john@gmail.com", "john@fb.com"}, 
-//                                {"Dan", "dan@gmail.com", "+1234567"},
-//                                {"john123", "5412312", "john123@skype.com"}, 
-//                                {"john1985", "5412312", "john@fb.com"},
-//                                {"john19856", "john123@skype.com", "john@fb1.com"},
-//                                {"Dan2", "dan123@gmail.com", "+1234567"},
-//                                {"Dan3", "dan@gmail.com", "+123456712312"},
-//                                {"Sandy", "sandy@gmail.com", "+123456712"},
-//                                {"sandy4", "sandy@fb.com", "sandy@gmail.com"}};
-        
         String[][] contacts =  {{"John", "john@gmail.com", "john@fb.com"}, 
-                {"Dan", "dan@gmail.com", "+1234567"},
-                {"john123", "5412312", "john123@skype.com"}, 
-                {"john1985", "5412312", "john@fb.com"}};
+                                {"Dan", "dan@gmail.com", "+1234567"},
+                                {"john123", "5412312", "john123@skype.com"}, 
+                                {"john1985", "5412312", "john@fb.com"},
+                                {"john19856", "john123@skype.com", "john@fb1.com"},
+                                {"Dan2", "dan123@gmail.com", "+1234567"},
+                                {"Dan3", "dan@gmail.com", "+123456712312"},
+                                {"Sandy", "sandy@gmail.com", "+123456712"},
+                                {"sandy4", "sandy@fb.com", "sandy@gmail.com"}};
+        
+//        String[][] contacts =  {{"John", "john@gmail.com", "john@fb.com"}, 
+//                {"Dan", "dan@gmail.com", "+1234567"},
+//                {"john123", "5412312", "john123@skype.com"}, 
+//                {"john1985", "5412312", "john@fb.com"}};
        
         List<Contact> wholeList = new ArrayList<Contact>();
         // construct list of Contact
@@ -59,7 +58,7 @@ public class Rubrik {
             for(int j = 1 ; j < contacts[i].length; j++) {
                 singleList.add(contacts[i][j]);
             }
-            Contact contact = r.new Contact(singleList, contacts[i][0], false); 
+            Contact contact = r.new Contact(singleList, i, false); 
             wholeList.add(contact);
         }
        
@@ -80,22 +79,22 @@ public class Rubrik {
             }
         }
         
-        List<Set<Contact>> resultList = new ArrayList<Set<Contact>>();
+        List<List<Contact>> resultList = new ArrayList<List<Contact>>();
         for(List<Contact> list : map.values()) {
-            Set<Contact> resultSet = new HashSet<Contact>();
+            List<Contact> subList = new ArrayList<Contact>();
             for(Contact c : list) {
                 if(!c.visited) {
-                    resultSet = r.findUnion(map, c, resultSet);
+                    subList = r.findUnion(map, c, subList);
                 }
             }        
-            resultList.add(resultSet);
+            resultList.add(subList);
         }
        
        
-        for(Set<Contact> contactSet: resultList) {
-            if(contactSet.size() > 0) {
-                for(Contact contact : contactSet) {
-                    System.out.print(contact.name + ", ");
+        for(List<Contact> contactList : resultList) {
+            if(contactList.size() > 0) {
+                for(Contact contact : contactList) {
+                    System.out.print(contact.index + ", ");
                 }
                 System.out.println();
             }
