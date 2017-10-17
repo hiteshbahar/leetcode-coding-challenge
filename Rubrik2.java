@@ -17,6 +17,7 @@ public class Rubrik2 {
     }
     /**
      * Insert a node in a complete binary tree.
+     * Time Complexity: O(n)
      * 
      * The tree uses linked representation.
      * If we represent the tree in an array,
@@ -28,6 +29,7 @@ public class Rubrik2 {
      * (because everytime when we insert, we are only given the root of the node), 
      * which can be done in a queue, such that the next node to be
      * inserted lies in the leftmost position.
+     * 
      * @param root
      * @param newNode
      */
@@ -93,14 +95,56 @@ public class Rubrik2 {
         }
         return result;
     }
+    /**
+     * Utilizing the property that the height of a
+     * complete binary tree is O(logn)
+     * @param root
+     * @return
+     */
+    public TreeNode insert(TreeNode root, TreeNode newNode) {
+        if (root == null) {
+            root = new TreeNode(newNode.val);
+            return root;
+        }
+        if (root.left == null) {
+            root.left = new TreeNode(newNode.val);
+            return root;
+        } else if (root.right == null) {
+            root.right = new TreeNode(newNode.val);
+            return root;
+        }
+        int leftHeight = getRightMostHeight(root.left);
+        int rightHeight = getRightMostHeight(root.right);
+        if (leftHeight == rightHeight) {
+            insert(root.left, newNode);
+        } else {
+            insert(root.right, newNode);
+        }
+        return root;
+    }
+    private int getRightMostHeight(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        return 1 + getRightMostHeight(node.right);
+    }
     public static void main(String[] args) {
         Rubrik2 r = new Rubrik2();
         TreeNode root = null;
+        TreeNode rootLogn = null;
         int[] nums = new int[]{1, 2, 3, 4, 5, 6, 7};
+        
+        System.out.println("#### Test O(n) ####");
         for (int i = 0; i < nums.length; i++) {
             root = r.insertNodeInCompleteTree(root, r.new TreeNode(nums[i]));
+            rootLogn = r.insert(rootLogn, r.new TreeNode(nums[i]));
         }
+        
         System.out.println(r.levelOrderTraversal(root));
+        
+        System.out.println("#### Test O(logn) ####");
+        System.out.println(r.levelOrderTraversal(rootLogn));
+
     }
 
 }
