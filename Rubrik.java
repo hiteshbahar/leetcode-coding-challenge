@@ -230,18 +230,18 @@ public class Rubrik {
         /**
          * Minesweeper
          */
-        char[][] matrix = {
-                {'B', 'X', 'B', 'X'},
-                {'B', 'B', 'X', 'X'},
-                {'X', 'B', 'X', 'X'},
-                {'B', 'X', 'X', 'X'}};
-        Minesweeper m = r.new Minesweeper(matrix);
-        ReturnType res = m.clickTile(3, 3);
-        System.out.println(res.isAlive);
-        System.out.println(res.surroundings.size());
-
-        for (Point p : res.surroundings) {
-            System.out.println("(" + p.x + "," + (p.y) + ") has " + p.count + " surrounding bombs");
-        }
+//        char[][] matrix = {
+//                {'B', 'X', 'B', 'X'},
+//                {'B', 'B', 'X', 'X'},
+//                {'X', 'B', 'X', 'X'},
+//                {'B', 'X', 'X', 'X'}};
+//        Minesweeper m = r.new Minesweeper(matrix);
+//        ReturnType res = m.clickTile(3, 3);
+//        System.out.println(res.isAlive);
+//        System.out.println(res.surroundings.size());
+//
+//        for (Point p : res.surroundings) {
+//            System.out.println("(" + p.x + "," + (p.y) + ") has " + p.count + " surrounding bombs");
+//        }
     }
 }
