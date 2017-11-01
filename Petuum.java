@@ -8,8 +8,8 @@ public class Petuum {
         int n = str.length();
         int k = 0;
         char[] strArr = str.toCharArray();
-        for (int i = 1; i < n; i++) {
-            if (k == 0 || strArr[i] != strArr[i - 1]) {
+        for (int i = 0; i < n; i++) {
+            if (k == 0 || strArr[i] != strArr[k - 1]) {
                 strArr[k++] = strArr[i];
             } else {
                 k--;
