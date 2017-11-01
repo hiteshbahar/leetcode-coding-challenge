@@ -9,21 +9,13 @@ public class Petuum {
         int k = 0;
         char[] strArr = str.toCharArray();
         for (int i = 1; i < n; i++) {
-            if (strArr[i] != strArr[i - 1]) {
-                strArr[k++] = strArr[i - 1];
+            if (k == 0 || strArr[i] != strArr[i - 1]) {
+                strArr[k++] = strArr[i];
             } else {
-                while (i < n && strArr[i] == strArr[i - 1]) {
-                    i++;
-                }
+                k--;
             }
         }
-        // add the last character
-        strArr[k++] = strArr[n - 1];
-        if (k != n) {
-            return removeDuplicateLetters(String.valueOf(strArr, 0, k));
-        } else {
-            return String.valueOf(strArr, 0, k);
-        }
+        return new String(strArr, 0, k);
     }
     public static void main(String[] args) {
         String str1 = "abbac";
