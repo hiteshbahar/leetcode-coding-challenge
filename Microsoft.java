@@ -37,12 +37,22 @@ public class Microsoft {
     public static void main(String[] args) {
         int[] stones1 = new int[]{0,1,3,5,6,8,12,17};
         int[] stones2 = new int[]{0,1,2,3,4,8,9,11};
-        int[] river = new int[stones1[stones1.length - 1] + 1];
+        
+        int[] river1 = new int[stones1[stones1.length - 1] + 1];
+        int[] river2 = new int[stones2[stones2.length - 1] + 1];
         
         int stoneIndex = 0;
-        for (int i = 0; i < river.length; i++) {
+        for (int i = 0; i < river1.length; i++) {
             if (i == stones1[stoneIndex]) {
-                river[i] = 1;
+                river1[i] = 1;
+                stoneIndex++;
+            }
+        }
+        
+        stoneIndex = 0;
+        for (int i = 0; i < river2.length; i++) {
+            if (i == stones2[stoneIndex]) {
+                river2[i] = 1;
                 stoneIndex++;
             }
         }
@@ -50,11 +60,18 @@ public class Microsoft {
         System.out.println(canCross(stones1));
         System.out.println(canCross(stones2));
         
-        for (int i = 0; i < river.length; i++) {
-            System.out.print(river[i] + " ");
+        for (int i = 0; i < river1.length; i++) {
+            System.out.print(river1[i] + " ");
         }
         System.out.println();
-        System.out.println(canCrossBinary(river, 0, 0));
+
+        for (int i = 0; i < river2.length; i++) {
+            System.out.print(river2[i] + " ");
+        }
+        
+        System.out.println();
+        System.out.println(canCrossBinary(river1, 0, 0));
+        System.out.println(canCrossBinary(river2, 0, 0));
         
 
     }
