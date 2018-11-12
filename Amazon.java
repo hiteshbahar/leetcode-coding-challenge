@@ -87,21 +87,19 @@ public class Amazon {
         int ptr2 = 0;
         int m = forward.size();
         int n = backward.size();
-        int min = Integer.MAX_VALUE;
+        int min = Integer.MIN_VALUE;
         while (ptr1 < m && ptr2 < n) {
             List<Integer> pair1 = forward.get(ptr1);
             List<Integer> pair2 = backward.get(ptr2);
             int curr = pair1.get(1) + pair2.get(1);
             int diff = curr - target;
-            int absDiff = Math.abs(diff);
-            if (absDiff <= min) {
-                if (absDiff < min) {
+            if (diff <= 0 && diff >= min) {
+                if (diff > min) {
                     result = new ArrayList<>();
                 }
-                System.out.println("diff " + diff);
                 Integer[] ids = new Integer[] {pair1.get(0), pair2.get(0)};
                 result.add(new ArrayList<>(Arrays.asList(ids)));
-                min = absDiff;
+                min = diff;
             }
             if (diff < 0) {
                 ptr1++;
@@ -110,7 +108,6 @@ public class Amazon {
             }
 
         }
-        System.out.println("result " + result);
         return result;
     }
 }
