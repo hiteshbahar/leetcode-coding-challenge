@@ -43,7 +43,39 @@ public class Amazon {
         }
         return result;
     }
+    
     public static int getDist(List<Integer> list) {
         return (int)(Math.pow(list.get(0), 2) + Math.pow(list.get(1), 2));
+    }
+    /**
+     * find the pairs that are closest to the target mileage
+     * @param forward List of List, [id, forward_mileage]
+     * @param backward List of List, [id, backward_mileage]
+     * @param target target mileage
+     * @return
+     */
+    public static List<List<Integer>> twoSumClosest(List<List<Integer>> forward, List<List<Integer>> backward, int target) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        // TODO: check if forward and backward are normal List<List<Integer>>
+        Collections.sort(forward, (l1,l2) -> l1.get(1) - l2.get(1));
+        Collections.sort(backward, (l1,l2) -> l1.get(1) - l2.get(1));
+        int ptr1 = 0;
+        int ptr2 = 0;
+        int m = forward.size();
+        int n = backward.size();
+        int min = Integer.MAX_VALUE;
+        while (ptr1 < m && ptr2 < n) {
+            List<Integer> pair1 = forward.get(ptr1);
+            List<Integer> pair2 = backward.get(ptr2);
+            int curr = pair1.get(1) + pair2.get(1);
+            int diff = target - curr;
+            if (diff == 0) {
+                Integer[] ids = new Integer[] {pair1.get(0), pair2.get(0)};
+                result.add(new ArrayList<Integer>(Arrays.asList(ids)));
+            } else if (diff < 0) {
+                
+            }
+        }
+        return result;
     }
 }
